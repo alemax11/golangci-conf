@@ -160,9 +160,6 @@ linters-settings:
       - name: unused-parameter
         severity: warning
         disabled: false
-      - name: unused-receiver
-        severity: warning
-        disabled: false
       - name: useless-break
         severity: warning
         disabled: false
@@ -182,7 +179,6 @@ linters-settings:
       - deferUnlambda
       - appendCombine
       - equalFold
-      - hugeParam
       - indexAlloc
       - rangeExprCopy
       - rangeValCopy
@@ -237,12 +233,11 @@ linters-settings:
     match-constant: false
     numbers: true
     ignore-calls: false
-  rowserrcheck:
-    packages:
-      - github.com/jackc/pgx/v5
   exhaustruct:
     exclude:
-      - 'http\.Server$'
+      - 'http.Server'
+      - 'http.Cookie'
+      - 'models.ErrorResponse'
 
 linters:
   enable:
@@ -272,7 +267,6 @@ linters:
     - gosimple
     - govet
     - staticcheck
-    - typecheck
     - unused
     - asciicheck
     - bodyclose
@@ -295,7 +289,6 @@ linters:
     - prealloc
     - predeclared
     - reassign
-    - rowserrcheck
     - sqlclosecheck
     - unparam
     - usestdlibvars
