@@ -11,7 +11,7 @@ To use pre-commit hook:
 1. open the directory .git/hooks
 2. create a file named "pre-commit" 
 3. open the file and insert following script:
-''' 
+```
 #!/bin/bash
 
 set -e
@@ -28,6 +28,6 @@ if [ ! -f "$GOLANGCI_LINT" ]; then
 fi
 
 cd "$PROJECT_DIR/backend" && "$GOLANGCI_LINT" run --config=./.golangci.yaml
-'''
+```
 4. make the pre-commit file executable by running "chmod +x pre-commit"
 After completing theese steps, it will work successfully, and if the linter detect errors, commit will not be allowed. 
