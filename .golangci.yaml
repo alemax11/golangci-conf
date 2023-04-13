@@ -1,0 +1,305 @@
+run:
+  timeout: 5m
+  skip-files:
+    - ".*\\.pb\\.go$"
+  skip-dirs:
+    - models
+
+output:
+  sort-results: true
+
+linters-settings:
+  varnamelen:
+    max-distance: 0
+    min-name-length: 2
+    check-return: true
+    check-type-param: true
+    ignore-type-assert-ok: true
+    ignore-map-index-ok: true
+    ignore-chan-recv-ok: true
+    ignore-decls:
+      - w http.ResponseWriter
+      - r *http.Request
+      - i int
+      - j int
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gomnd:
+    checks:
+      - argument
+      - case
+      - condition
+      - operation
+      - return
+      - assign
+    ignored-numbers:
+      - '0666'
+      - '0755'
+      - '0777'
+      - '0644'
+  revive:
+    ignore-generated-header: false
+    rules:
+      - name: atomic
+        severity: warning
+        disabled: false
+      - name: bool-literal-in-expr
+        severity: warning
+        disabled: false
+      - name: confusing-naming
+        severity: warning
+        disabled: false
+      - name: confusing-results
+        severity: warning
+        disabled: false
+      - name: constant-logical-expr
+        severity: warning
+        disabled: false
+      - name: context-as-argument
+        severity: warning
+        disabled: false
+      - name: context-keys-type
+        severity: warning
+        disabled: false
+      - name: datarace
+        severity: warning
+        disabled: false
+      - name: deep-exit
+        severity: warning
+        disabled: false
+      - name: defer
+        severity: warning
+        disabled: false
+        arguments:
+          - ["call-chain", "loop", "method-call", "recover", "immediate-recover", "return"]
+      - name: duplicated-imports
+        severity: warning
+        disabled: false
+      - name: early-return
+        severity: warning
+        disabled: false
+      - name: empty-block
+        severity: warning
+        disabled: false
+      - name: empty-lines
+        severity: warning
+        disabled: false
+      - name: error-return
+        severity: warning
+        disabled: false
+      - name: error-strings
+        severity: warning
+        disabled: false
+      - name: errorf
+        severity: warning
+        disabled: false
+      - name: flag-parameter
+        severity: warning
+        disabled: false
+      - name: function-result-limit
+        severity: warning
+        disabled: false
+        arguments: [3]
+      - name: function-length
+        severity: warning
+        disabled: false
+        arguments: [0, 120]
+      - name: increment-decrement
+        severity: warning
+        disabled: false
+      - name: indent-error-flow
+        severity: warning
+        disabled: false
+      - name: import-shadowing
+        severity: warning
+        disabled: false
+      - name: line-length-limit
+        severity: warning
+        disabled: false
+        arguments: [130]
+      - name: range
+        severity: warning
+        disabled: false
+      - name: range-val-in-closure
+        severity: warning
+        disabled: false
+      - name: range-val-address
+        severity: warning
+        disabled: false
+      - name: receiver-naming
+        severity: warning
+        disabled: false
+      - name: redefines-builtin-id
+        severity: warning
+        disabled: false
+      - name: string-of-int
+        severity: warning
+        disabled: false
+      - name: superfluous-else
+        severity: warning
+        disabled: false
+      - name: time-equal
+        severity: warning
+        disabled: false
+      - name: time-naming
+        severity: warning
+        disabled: false
+      - name: var-declaration
+        severity: warning
+        disabled: false
+      - name: unconditional-recursion
+        severity: warning
+        disabled: false
+      - name: unexported-naming
+        severity: warning
+        disabled: false
+      - name: unreachable-code
+        severity: warning
+        disabled: false
+      - name: unused-parameter
+        severity: warning
+        disabled: false
+      - name: unused-receiver
+        severity: warning
+        disabled: false
+      - name: useless-break
+        severity: warning
+        disabled: false
+      - name: waitgroup-by-value
+        severity: warning
+        disabled: false
+  misspell:
+    locale: US
+  gosec:
+    exclude-generated: true
+  gocritic:
+    enabled-checks:
+      - sqlQuery
+      - unnecessaryDefer
+      - weakCond
+      - boolExprSimplify
+      - deferUnlambda
+      - appendCombine
+      - equalFold
+      - hugeParam
+      - indexAlloc
+      - rangeExprCopy
+      - rangeValCopy
+      - stringXbytes
+  gosimple:
+    checks: ["all"]
+  govet:
+    enable:
+      - asmdecl
+      - assign
+      - atomic
+      - atomicalign
+      - bools
+      - buildtag
+      - cgocall
+      - composites
+      - copylocks
+      - deepequalerrors
+      - errorsas
+      - findcall
+      - framepointer
+      - httpresponse
+      - ifaceassert
+      - loopclosure
+      - lostcancel
+      - nilfunc
+      - nilness
+      - printf
+      - reflectvaluecompare
+      - shift
+      - sigchanyzer
+      - sortslice
+      - stdmethods
+      - stringintconv
+      - structtag
+      - testinggoroutine
+      - tests
+      - unmarshal
+      - unreachable
+      - unsafeptr
+      - unusedresult
+      - unusedwrite
+  staticcheck:
+    checks: ["all"]
+  exhaustive:
+    check:
+      - switch
+      - map
+  goconst:
+    min-len: 
+    min-occurrences: 2
+    match-constant: false
+    numbers: true
+    ignore-calls: false
+  rowserrcheck:
+    packages:
+      - github.com/jackc/pgx/v5
+  exhaustruct:
+    exclude:
+      - 'http\.Server$'
+
+linters:
+  enable:
+    - exhaustruct
+    - wsl
+    - varnamelen
+    - errcheck
+    - wrapcheck
+    - whitespace
+    - gomnd
+    - revive
+    - nlreturn
+    - errname
+    - gochecknoglobals
+    - misspell
+    - unconvert
+    - gofumpt
+    - gofmt
+    - gci
+    - goimports
+    - nilnil
+    - gosec
+    - gocritic
+    - gochecknoinits
+    - ineffassign
+    - wastedassign
+    - gosimple
+    - govet
+    - staticcheck
+    - typecheck
+    - unused
+    - asciicheck
+    - bodyclose
+    - contextcheck
+    - durationcheck
+    - errchkjson
+    - errorlint
+    - execinquery
+    - exhaustive
+    - exportloopref
+    - forbidigo
+    - forcetypeassert
+    - goconst
+    - godox
+    - loggercheck
+    - makezero
+    - nakedret
+    - nilerr
+    - noctx
+    - prealloc
+    - predeclared
+    - reassign
+    - rowserrcheck
+    - sqlclosecheck
+    - unparam
+    - usestdlibvars
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
